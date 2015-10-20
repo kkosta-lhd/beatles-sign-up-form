@@ -1,11 +1,54 @@
+<?php
+$title = ['Ms.','Mrs.','Mr.','None' => NULL];
+$favBeatle = ['George','Ringo','Paul','John'];
+
+class selectMenu {
+    private $items;  // array of items
+    private $options; // hold all html options
+    private $selectMenu; // final select menu
+
+    function __construct($itemArray='') {
+        $this->items = $itemArray;
+    }
+
+    private function buildOptions() {
+        $this->options = "<option value=''>Select One</option>";
+        forEach($this->items as $item) {
+            $this->options .= "<option value='"
+                . $item . "'>"
+                . $item . "</option>";
+        }
+    }
+
+    private function buildSelect() {
+        $this->selectMenu = "<select>".$this->options."</select>";
+    }
+
+    public function setOptions($array) {
+        $this->items = $array;
+    }
+
+    public function makeMenu() {
+        $this->buildOptions();
+        $this->buildSelect();
+        return $this->selectMenu;
+    }
+}
+
+$titleMenu = new selectMenu;
+$titleMenu->setOptions($title);
+
+$beatlesMenu = new selectMenu;
+$beatlesMenu->setOptions($favBeatle);
+?>
+
 <!doctype html>
 <html>
 <head>
 <link href="_style/style.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-body {margin: auto;background-image:url(_images/beatles.jpg);     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: top; }
+body {margin: auto;background-image:url(_images/beatles.jpg); background-repeat: no-repeat;
+background-attachment: fixed;  background-position: top; }
 #beatlesform {opacity: 0.9; filter: alpha(opacity=90); /* For IE8 and earlier */ margin: auto;width:60%;background-color:#fff;padding:20px;border-left:solid 1px #000;border-right:solid 1px #000; border-bottom:solid 1px #000;}
 .form {opacity: 1; filter: alpha(opacity=100);}
 </style>
@@ -18,13 +61,7 @@ body {margin: auto;background-image:url(_images/beatles.jpg);     background-rep
 <p>Will they get back together across time and dimension? We have the answers!</p>
 <form class="form" method="post" action="submit.php">
 	<p>Title</p>
-    <select name="title">
- 	 <option value="">Select One</option>
- 	 <option value="Ms.">Ms.</option>
- 	 <option value="Mrs.">Mrs.</option>
- 	 <option value="Mr.">Mr.</option>
- 	 <option value="none">None</option>
-	</select>
+    <?php echo $titleMenu->makeMenu(); ?>
     <p>First Name</p>
     <input type="text" name ="first_name" placeholder= "Enter first name" />
 	<p>Last Name</p>
@@ -34,13 +71,7 @@ body {margin: auto;background-image:url(_images/beatles.jpg);     background-rep
     <p>Password</p>
     <input type="text" name ="password" placeholder= "Enter password" />
     <p>Favorite Beatle</p>
-    <select name="favBeatle">
- 	 <option value="">Select One</option>
- 	 <option value="George">George</option>
- 	 <option value="Ringo">Ringo</option>
- 	 <option value="Paul">Paul</option>
- 	 <option value="John">John</option>
-	</select>
+    <?php echo $beatlesMenu->makeMenu(); ?>
     <p>&nbsp;</p>
     <input type="submit" name="submit" value= "Submit"/>
 </form>
