@@ -30,7 +30,7 @@ Using the form information, create the username with:
 
 1. First two letters of the firstname +
 2. Last two letters of the lastname +
-3. Index of the selected Beatle (0 or 1 or 2 or 3)+
+3. Index of the selected Beatle (0 or 1 or 2 or 3) +
 4. First two letters and last letter of the selected Beatles name.
 
 ###Extra:
