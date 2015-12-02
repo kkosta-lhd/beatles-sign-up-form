@@ -4,11 +4,11 @@ require_once '_includes/selectmenu.php';
 require_once '_includes/userinfo.php';
 
 //instantiates classes
-$titleMenu = new selectMenu;
+/*$titleMenu = new selectMenu;
 $titleMenu->setOptions($title);
 
 $beatlesMenu = new selectMenu;
-$beatlesMenu->setOptions($favBeatle);
+$beatlesMenu->setOptions($favBeatle);*/
 
 ?>
 
@@ -25,7 +25,15 @@ $beatlesMenu->setOptions($favBeatle);
 <p>Will they get back together across time and dimension? We have the answers!</p>
 <form class="form" method="post" action="submit.php">
 	<p>Title</p>
-    <?php echo $titleMenu->makeMenu(); ?>
+    <select name="select2">
+
+        <?php foreach($options as $id => $salutation)
+        {
+            ?>
+            <option value="<?php echo $id ?>"><?php echo $salutation ?></option>
+            <?php
+        }
+        ?>
     <p>First Name</p>
     <input type="text" name ="first_name" placeholder= "Enter first name" />
 	<p>Last Name</p>
@@ -35,7 +43,15 @@ $beatlesMenu->setOptions($favBeatle);
     <p>Password</p>
     <input type="text" name ="password" placeholder= "Enter password" />
     <p>Favorite Beatle</p>
-    <?php echo $beatlesMenu->makeMenu(); ?>
+        <select name="beatles">
+
+            <?php foreach($beatles as $id => $beatle)
+            {
+                ?>
+                <option value="<?php echo $id ?>"><?php echo $beatle ?></option>
+                <?php
+            }
+            ?>
     <p>&nbsp;</p>
     <input type="submit" name="submit" value= "Submit"/>
 </form>
