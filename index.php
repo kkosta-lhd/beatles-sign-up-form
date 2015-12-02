@@ -1,14 +1,6 @@
 <?php
 require_once '_includes/data.php';
-require_once '_includes/selectmenu.php';
 require_once '_includes/userinfo.php';
-
-//instantiates classes
-/*$titleMenu = new selectMenu;
-$titleMenu->setOptions($title);
-
-$beatlesMenu = new selectMenu;
-$beatlesMenu->setOptions($favBeatle);*/
 
 ?>
 
